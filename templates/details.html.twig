@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+	<h1>{{ article.titre }}</h1>
+
+	<p>
+		<small>Le
+			{{ article.date }}</small>
+	</p>
+
+	<p>{{ article.contenu }}</p>
+
+	<h2>Les commentaire</h2>
+
+	<h3>Nouveau commentaire</h3>
+	<form method="post" action="poster_commentaire.php?clef={{ clef }}">
+		<div class="form-group row">
+			<label for="auteur" class="col-sm-12 col-form-label">Auteur</label>
+			<div class="col-sm-12">
+				<input type="text" class="form-control" name="auteur" id="inputName" placeholder="">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="contenu">Contenu</label>
+			<textarea class="form-control" name="contenu" id="contenu" rows="3"></textarea>
+		</div>
+
+		<div class="form-group row">
+			<div class="col-sm-12">
+				<button type="submit" class="btn btn-primary">Poster</button>
+			</div>
+		</div>
+	</form>
+
+	<div class="row">
+		{% for comm in article.commentaires %}
+			<div class="card col-12 mb-4">
+				<div class="card-body">
+					<h4 class="card-title">
+						Par
+						<b>{{comm.auteur}}</b>, le
+						{{ comm.date}}
+					</h4>
+					<p class="card-text">{{ comm.contenu }}</p>
+				</div>
+			</div>
+		{% else %}
+			<p>Pas de commentaire pour cet article...</p>
+		{% endfor %}
+	</div>
+{% endblock %}

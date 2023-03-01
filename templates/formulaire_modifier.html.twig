@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<div class="container">
+		<form method="post" action="modifier.php?clef={{ clef }}">
+			<div class="form-group row">
+				<label for="titre" class="col-sm-12 col-form-label">Titre</label>
+				<div class="col-sm-12">
+					<input type="text" class="form-control" name="titre" id="titre" placeholder="" required autofocus value="{{ article.titre }}">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="contenu">Contenu</label>
+				<textarea class="form-control" name="contenu" id="contenu" rows="3" required>{{ article.contenu }}</textarea>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Poster</button>
+		</form>
+	</div>
+
+{% endblock %}
